@@ -1,0 +1,2637 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Machine xmlns='https://www.atelierb.eu/Formats/bxml' version='1.0' name='Robot' type='abstraction' position='true' semantic='true' b0check='false'>
+<Sees>
+<Attr>
+<Pos l='8' c='1' s='4'/>
+</Attr>
+<Referenced_Machine>
+<Attr>
+<Pos l='9' c='5' s='4'/>
+</Attr>
+<Name>Maze</Name>
+</Referenced_Machine>
+</Sees>
+<Sets>
+<Attr>
+<Pos l='11' c='1' s='4'/>
+</Attr>
+<Set>
+<Id value='MOVE' typref='4'>
+<Attr>
+<Pos l='12' c='5' s='4'/>
+</Attr>
+</Id>
+<Enumerated_Values>
+<Id value='Already_In_Exit_Square' typref='5'>
+<Attr>
+<Pos l='12' c='14' s='22'/>
+</Attr>
+</Id>
+<Id value='Moved_To_North' typref='5'>
+<Attr>
+<Pos l='12' c='37' s='14'/>
+</Attr>
+</Id>
+<Id value='Moved_To_South' typref='5'>
+<Attr>
+<Pos l='12' c='53' s='14'/>
+</Attr>
+</Id>
+<Id value='Moved_To_East' typref='5'>
+<Attr>
+<Pos l='12' c='69' s='13'/>
+</Attr>
+</Id>
+<Id value='Moved_To_West' typref='5'>
+<Attr>
+<Pos l='12' c='84' s='13'/>
+</Attr>
+</Id>
+<Id value='Internal_Wall_Crash' typref='5'>
+<Attr>
+<Pos l='12' c='99' s='19'/>
+</Attr>
+</Id>
+<Id value='Out_Of_Boundary' typref='5'>
+<Attr>
+<Pos l='12' c='120' s='15'/>
+</Attr>
+</Id>
+<Id value='yes' typref='5'>
+<Attr>
+<Pos l='12' c='137' s='3'/>
+</Attr>
+</Id>
+<Id value='no' typref='5'>
+<Attr>
+<Pos l='12' c='142' s='2'/>
+</Attr>
+</Id>
+</Enumerated_Values>
+</Set>
+<Set>
+<Id value='TELEPORT' typref='6'>
+<Attr>
+<Pos l='13' c='5' s='8'/>
+</Attr>
+</Id>
+<Enumerated_Values>
+<Id value='Successfully_Teleported' typref='7'>
+<Attr>
+<Pos l='13' c='18' s='23'/>
+</Attr>
+</Id>
+<Id value='Cannot_Teleport_To_Same_Square' typref='7'>
+<Attr>
+<Pos l='13' c='44' s='30'/>
+</Attr>
+</Id>
+<Id value='Cannot_Teleport_Internal_Wall_Crash' typref='7'>
+<Attr>
+<Pos l='13' c='76' s='35'/>
+</Attr>
+</Id>
+<Id value='Cannot_Teleport_Out_Of_Boundary' typref='7'>
+<Attr>
+<Pos l='13' c='113' s='31'/>
+</Attr>
+</Id>
+<Id value='Already_Teleported_To_Exit_Square' typref='7'>
+<Attr>
+<Pos l='13' c='145' s='33'/>
+</Attr>
+</Id>
+</Enumerated_Values>
+</Set>
+</Sets>
+<Abstract_Variables>
+<Attr>
+<Pos l='15' c='1' s='18'/>
+</Attr>
+<Id value='robotInX' typref='1'>
+<Attr>
+<Pos l='16' c='5' s='8'/>
+</Attr>
+</Id>
+<Id value='robotInY' typref='1'>
+<Attr>
+<Pos l='17' c='5' s='8'/>
+</Attr>
+</Id>
+<Id value='currentPosition' typref='8'>
+<Attr>
+<Pos l='18' c='5' s='15'/>
+</Attr>
+</Id>
+<Id value='visited' typref='9'>
+<Attr>
+<Pos l='19' c='5' s='7'/>
+</Attr>
+</Id>
+</Abstract_Variables>
+<Invariant>
+<Attr>
+<Pos l='21' c='1' s='9'/>
+</Attr>
+<Nary_Pred op='&amp;'>
+<Exp_Comparison op=':'>
+<Attr>
+<Pos l='22' c='14' s='1'/>
+</Attr>
+<Id value='robotInX' typref='1'>
+<Attr>
+<Pos l='22' c='5' s='8'/>
+</Attr>
+</Id>
+<Id value='width' typref='2'>
+<Attr>
+<Pos l='22' c='16' s='5'/>
+</Attr>
+</Id>
+</Exp_Comparison>
+<Exp_Comparison op=':'>
+<Attr>
+<Pos l='23' c='14' s='1'/>
+</Attr>
+<Id value='robotInY' typref='1'>
+<Attr>
+<Pos l='23' c='5' s='8'/>
+</Attr>
+</Id>
+<Id value='height' typref='2'>
+<Attr>
+<Pos l='23' c='16' s='6'/>
+</Attr>
+</Id>
+</Exp_Comparison>
+<Exp_Comparison op=':'>
+<Attr>
+<Pos l='24' c='21' s='1'/>
+</Attr>
+<Id value='currentPosition' typref='8'>
+<Attr>
+<Pos l='24' c='5' s='15'/>
+</Attr>
+</Id>
+<Id value='maze' typref='10'>
+<Attr>
+<Pos l='24' c='23' s='4'/>
+</Attr>
+</Id>
+</Exp_Comparison>
+<Exp_Comparison op=':'>
+<Attr>
+<Pos l='25' c='13' s='1'/>
+</Attr>
+<Id value='visited' typref='9'>
+<Attr>
+<Pos l='25' c='5' s='7'/>
+</Attr>
+</Id>
+<Unary_Exp op='seq' typref='11'>
+<Attr>
+<Pos l='25' c='15' s='3'/>
+</Attr>
+<Id value='maze' typref='10'>
+<Attr>
+<Pos l='25' c='19' s='4'/>
+</Attr>
+</Id>
+</Unary_Exp>
+</Exp_Comparison>
+</Nary_Pred>
+</Invariant>
+<Initialisation>
+<Attr>
+<Pos l='27' c='1' s='14'/>
+</Attr>
+<Nary_Sub op='||'>
+<Assignement_Sub>
+<Attr>
+<Pos l='29' c='14' s='2'/>
+</Attr>
+<Variables>
+<Id value='robotInX' typref='1'>
+<Attr>
+<Pos l='29' c='5' s='8'/>
+</Attr>
+</Id>
+</Variables>
+<Values>
+<Integer_Literal value='1' typref='1'>
+<Attr>
+<Pos l='29' c='17' s='1'/>
+</Attr>
+</Integer_Literal>
+</Values>
+</Assignement_Sub>
+<Assignement_Sub>
+<Attr>
+<Pos l='30' c='14' s='2'/>
+</Attr>
+<Variables>
+<Id value='robotInY' typref='1'>
+<Attr>
+<Pos l='30' c='5' s='8'/>
+</Attr>
+</Id>
+</Variables>
+<Values>
+<Integer_Literal value='1' typref='1'>
+<Attr>
+<Pos l='30' c='17' s='1'/>
+</Attr>
+</Integer_Literal>
+</Values>
+</Assignement_Sub>
+<Assignement_Sub>
+<Attr>
+<Pos l='31' c='21' s='2'/>
+</Attr>
+<Variables>
+<Id value='currentPosition' typref='8'>
+<Attr>
+<Pos l='31' c='5' s='15'/>
+</Attr>
+</Id>
+</Variables>
+<Values>
+<Binary_Exp op='|-&gt;' typref='8'>
+<Attr>
+<Pos l='31' c='28' s='3'/>
+</Attr>
+<Integer_Literal value='1' typref='1'>
+<Attr>
+<Pos l='31' c='26' s='1'/>
+</Attr>
+</Integer_Literal>
+<Integer_Literal value='1' typref='1'>
+<Attr>
+<Pos l='31' c='32' s='1'/>
+</Attr>
+</Integer_Literal>
+</Binary_Exp>
+</Values>
+</Assignement_Sub>
+<Assignement_Sub>
+<Attr>
+<Pos l='32' c='13' s='2'/>
+</Attr>
+<Variables>
+<Id value='visited' typref='9'>
+<Attr>
+<Pos l='32' c='5' s='7'/>
+</Attr>
+</Id>
+</Variables>
+<Values>
+<Nary_Exp op='[' typref='9'>
+<Attr>
+<Pos l='32' c='16' s='1'/>
+</Attr>
+<Binary_Exp op='|-&gt;' typref='8'>
+<Attr>
+<Pos l='32' c='21' s='3'/>
+</Attr>
+<Integer_Literal value='1' typref='1'>
+<Attr>
+<Pos l='32' c='19' s='1'/>
+</Attr>
+</Integer_Literal>
+<Integer_Literal value='1' typref='1'>
+<Attr>
+<Pos l='32' c='25' s='1'/>
+</Attr>
+</Integer_Literal>
+</Binary_Exp>
+</Nary_Exp>
+</Values>
+</Assignement_Sub>
+</Nary_Sub>
+</Initialisation>
+<Operations>
+<Operation name='MoveNorth'>
+<Attr>
+<Pos l='47' c='5' s='6' endLine='65'/>
+</Attr>
+<Output_Parameters>
+<Id value='output' typref='5'>
+<Attr>
+<Pos l='47' c='5' s='6'/>
+</Attr>
+</Id>
+</Output_Parameters>
+<Precondition>
+<Exp_Comparison op=':'>
+<Attr>
+<Pos l='48' c='21' s='1'/>
+</Attr>
+<Id value='output' typref='5'>
+<Attr>
+<Pos l='48' c='14' s='6'/>
+</Attr>
+</Id>
+<Id value='MOVE' typref='4'>
+<Attr>
+<Pos l='48' c='23' s='4'/>
+</Attr>
+</Id>
+</Exp_Comparison>
+</Precondition>
+<Body>
+<If_Sub elseif='no'>
+<Attr>
+<Pos l='50' c='13' s='2'/>
+</Attr>
+<Condition>
+<Exp_Comparison op=':'>
+<Attr>
+<Pos l='50' c='40' s='1'/>
+</Attr>
+<Binary_Exp op='|-&gt;' typref='8'>
+<Attr>
+<Pos l='50' c='26' s='3'/>
+</Attr>
+<Id value='robotInX' typref='1'>
+<Attr>
+<Pos l='50' c='17' s='8'/>
+</Attr>
+</Id>
+<Id value='robotInY' typref='1'>
+<Attr>
+<Pos l='50' c='30' s='8'/>
+</Attr>
+</Id>
+</Binary_Exp>
+<Id value='exit_square' typref='10'>
+<Attr>
+<Pos l='50' c='42' s='11'/>
+</Attr>
+</Id>
+</Exp_Comparison>
+</Condition>
+<Then>
+<Assignement_Sub>
+<Attr>
+<Pos l='52' c='24' s='2'/>
+</Attr>
+<Variables>
+<Id value='output' typref='5'>
+<Attr>
+<Pos l='52' c='17' s='6'/>
+</Attr>
+</Id>
+</Variables>
+<Values>
+<Id value='Already_In_Exit_Square' typref='5'>
+<Attr>
+<Pos l='52' c='27' s='22'/>
+</Attr>
+</Id>
+</Values>
+</Assignement_Sub>
+</Then>
+<Else>
+<If_Sub elseif='yes'>
+<Condition>
+<Exp_Comparison op=':'>
+<Attr>
+<Pos l='53' c='48' s='1'/>
+</Attr>
+<Binary_Exp op='|-&gt;' typref='8'>
+<Attr>
+<Pos l='53' c='30' s='3'/>
+</Attr>
+<Id value='robotInX' typref='1'>
+<Attr>
+<Pos l='53' c='21' s='8'/>
+</Attr>
+</Id>
+<Binary_Exp op='+i' typref='1'>
+<Attr>
+<Pos l='53' c='43' s='1'/>
+</Attr>
+<Id value='robotInY' typref='1'>
+<Attr>
+<Pos l='53' c='34' s='8'/>
+</Attr>
+</Id>
+<Integer_Literal value='1' typref='1'>
+<Attr>
+<Pos l='53' c='45' s='1'/>
+</Attr>
+</Integer_Literal>
+</Binary_Exp>
+</Binary_Exp>
+<Id value='internal_walls' typref='10'>
+<Attr>
+<Pos l='53' c='50' s='14'/>
+</Attr>
+</Id>
+</Exp_Comparison>
+</Condition>
+<Then>
+<Assignement_Sub>
+<Attr>
+<Pos l='55' c='24' s='2'/>
+</Attr>
+<Variables>
+<Id value='output' typref='5'>
+<Attr>
+<Pos l='55' c='17' s='6'/>
+</Attr>
+</Id>
+</Variables>
+<Values>
+<Id value='Internal_Wall_Crash' typref='5'>
+<Attr>
+<Pos l='55' c='27' s='19'/>
+</Attr>
+</Id>
+</Values>
+</Assignement_Sub>
+</Then>
+<Else>
+<If_Sub elseif='yes'>
+<Condition>
+<Exp_Comparison op='&gt;i'>
+<Attr>
+<Pos l='56' c='33' s='1'/>
+</Attr>
+<Binary_Exp op='+i' typref='1'>
+<Attr>
+<Pos l='56' c='29' s='1'/>
+</Attr>
+<Id value='robotInY' typref='1'>
+<Attr>
+<Pos l='56' c='20' s='8'/>
+</Attr>
+</Id>
+<Integer_Literal value='1' typref='1'>
+<Attr>
+<Pos l='56' c='31' s='1'/>
+</Attr>
+</Integer_Literal>
+</Binary_Exp>
+<Unary_Exp op='imax' typref='1'>
+<Attr>
+<Pos l='56' c='35' s='3'/>
+</Attr>
+<Id value='height' typref='2'>
+<Attr>
+<Pos l='56' c='39' s='6'/>
+</Attr>
+</Id>
+</Unary_Exp>
+</Exp_Comparison>
+</Condition>
+<Then>
+<Assignement_Sub>
+<Attr>
+<Pos l='58' c='24' s='2'/>
+</Attr>
+<Variables>
+<Id value='output' typref='5'>
+<Attr>
+<Pos l='58' c='17' s='6'/>
+</Attr>
+</Id>
+</Variables>
+<Values>
+<Id value='Out_Of_Boundary' typref='5'>
+<Attr>
+<Pos l='58' c='27' s='15'/>
+</Attr>
+</Id>
+</Values>
+</Assignement_Sub>
+</Then>
+<Else>
+<Nary_Sub op='||'>
+<Assignement_Sub>
+<Attr>
+<Pos l='60' c='25' s='2'/>
+</Attr>
+<Variables>
+<Id value='visited' typref='9'>
+<Attr>
+<Pos l='60' c='17' s='7'/>
+</Attr>
+</Id>
+</Variables>
+<Values>
+<Binary_Exp op='&lt;-' typref='9'>
+<Attr>
+<Pos l='60' c='37' s='2'/>
+</Attr>
+<Id value='visited' typref='9'>
+<Attr>
+<Pos l='60' c='29' s='7'/>
+</Attr>
+</Id>
+<Binary_Exp op='|-&gt;' typref='8'>
+<Attr>
+<Pos l='60' c='50' s='3'/>
+</Attr>
+<Id value='robotInX' typref='1'>
+<Attr>
+<Pos l='60' c='41' s='8'/>
+</Attr>
+</Id>
+<Binary_Exp op='+i' typref='1'>
+<Attr>
+<Pos l='60' c='63' s='1'/>
+</Attr>
+<Id value='robotInY' typref='1'>
+<Attr>
+<Pos l='60' c='54' s='8'/>
+</Attr>
+</Id>
+<Integer_Literal value='1' typref='1'>
+<Attr>
+<Pos l='60' c='65' s='1'/>
+</Attr>
+</Integer_Literal>
+</Binary_Exp>
+</Binary_Exp>
+</Binary_Exp>
+</Values>
+</Assignement_Sub>
+<Assignement_Sub>
+<Attr>
+<Pos l='61' c='33' s='2'/>
+</Attr>
+<Variables>
+<Id value='currentPosition' typref='8'>
+<Attr>
+<Pos l='61' c='17' s='15'/>
+</Attr>
+</Id>
+</Variables>
+<Values>
+<Binary_Exp op='|-&gt;' typref='8'>
+<Attr>
+<Pos l='61' c='46' s='3'/>
+</Attr>
+<Id value='robotInX' typref='1'>
+<Attr>
+<Pos l='61' c='37' s='8'/>
+</Attr>
+</Id>
+<Binary_Exp op='+i' typref='1'>
+<Attr>
+<Pos l='61' c='59' s='1'/>
+</Attr>
+<Id value='robotInY' typref='1'>
+<Attr>
+<Pos l='61' c='50' s='8'/>
+</Attr>
+</Id>
+<Integer_Literal value='1' typref='1'>
+<Attr>
+<Pos l='61' c='61' s='1'/>
+</Attr>
+</Integer_Literal>
+</Binary_Exp>
+</Binary_Exp>
+</Values>
+</Assignement_Sub>
+<Assignement_Sub>
+<Attr>
+<Pos l='62' c='26' s='2'/>
+</Attr>
+<Variables>
+<Id value='robotInY' typref='1'>
+<Attr>
+<Pos l='62' c='17' s='8'/>
+</Attr>
+</Id>
+</Variables>
+<Values>
+<Binary_Exp op='+i' typref='1'>
+<Attr>
+<Pos l='62' c='38' s='1'/>
+</Attr>
+<Id value='robotInY' typref='1'>
+<Attr>
+<Pos l='62' c='29' s='8'/>
+</Attr>
+</Id>
+<Integer_Literal value='1' typref='1'>
+<Attr>
+<Pos l='62' c='40' s='1'/>
+</Attr>
+</Integer_Literal>
+</Binary_Exp>
+</Values>
+</Assignement_Sub>
+<Assignement_Sub>
+<Attr>
+<Pos l='63' c='24' s='2'/>
+</Attr>
+<Variables>
+<Id value='output' typref='5'>
+<Attr>
+<Pos l='63' c='17' s='6'/>
+</Attr>
+</Id>
+</Variables>
+<Values>
+<Id value='Moved_To_North' typref='5'>
+<Attr>
+<Pos l='63' c='27' s='14'/>
+</Attr>
+</Id>
+</Values>
+</Assignement_Sub>
+</Nary_Sub>
+</Else>
+</If_Sub>
+</Else>
+</If_Sub>
+</Else>
+</If_Sub>
+</Body>
+</Operation>
+<Operation name='MoveSouth'>
+<Attr>
+<Pos l='67' c='6' s='6' endLine='85'/>
+</Attr>
+<Output_Parameters>
+<Id value='output' typref='5'>
+<Attr>
+<Pos l='67' c='6' s='6'/>
+</Attr>
+</Id>
+</Output_Parameters>
+<Precondition>
+<Exp_Comparison op=':'>
+<Attr>
+<Pos l='68' c='21' s='1'/>
+</Attr>
+<Id value='output' typref='5'>
+<Attr>
+<Pos l='68' c='14' s='6'/>
+</Attr>
+</Id>
+<Id value='MOVE' typref='4'>
+<Attr>
+<Pos l='68' c='23' s='4'/>
+</Attr>
+</Id>
+</Exp_Comparison>
+</Precondition>
+<Body>
+<If_Sub elseif='no'>
+<Attr>
+<Pos l='70' c='13' s='2'/>
+</Attr>
+<Condition>
+<Exp_Comparison op=':'>
+<Attr>
+<Pos l='70' c='40' s='1'/>
+</Attr>
+<Binary_Exp op='|-&gt;' typref='8'>
+<Attr>
+<Pos l='70' c='26' s='3'/>
+</Attr>
+<Id value='robotInX' typref='1'>
+<Attr>
+<Pos l='70' c='17' s='8'/>
+</Attr>
+</Id>
+<Id value='robotInY' typref='1'>
+<Attr>
+<Pos l='70' c='30' s='8'/>
+</Attr>
+</Id>
+</Binary_Exp>
+<Id value='exit_square' typref='10'>
+<Attr>
+<Pos l='70' c='42' s='11'/>
+</Attr>
+</Id>
+</Exp_Comparison>
+</Condition>
+<Then>
+<Assignement_Sub>
+<Attr>
+<Pos l='72' c='24' s='2'/>
+</Attr>
+<Variables>
+<Id value='output' typref='5'>
+<Attr>
+<Pos l='72' c='17' s='6'/>
+</Attr>
+</Id>
+</Variables>
+<Values>
+<Id value='Already_In_Exit_Square' typref='5'>
+<Attr>
+<Pos l='72' c='27' s='22'/>
+</Attr>
+</Id>
+</Values>
+</Assignement_Sub>
+</Then>
+<Else>
+<If_Sub elseif='yes'>
+<Condition>
+<Exp_Comparison op='&gt;i'>
+<Attr>
+<Pos l='73' c='33' s='1'/>
+</Attr>
+<Binary_Exp op='-i' typref='1'>
+<Attr>
+<Pos l='73' c='29' s='1'/>
+</Attr>
+<Id value='robotInY' typref='1'>
+<Attr>
+<Pos l='73' c='20' s='8'/>
+</Attr>
+</Id>
+<Integer_Literal value='1' typref='1'>
+<Attr>
+<Pos l='73' c='31' s='1'/>
+</Attr>
+</Integer_Literal>
+</Binary_Exp>
+<Unary_Exp op='imax' typref='1'>
+<Attr>
+<Pos l='73' c='35' s='3'/>
+</Attr>
+<Id value='height' typref='2'>
+<Attr>
+<Pos l='73' c='39' s='6'/>
+</Attr>
+</Id>
+</Unary_Exp>
+</Exp_Comparison>
+</Condition>
+<Then>
+<Assignement_Sub>
+<Attr>
+<Pos l='75' c='24' s='2'/>
+</Attr>
+<Variables>
+<Id value='output' typref='5'>
+<Attr>
+<Pos l='75' c='17' s='6'/>
+</Attr>
+</Id>
+</Variables>
+<Values>
+<Id value='Out_Of_Boundary' typref='5'>
+<Attr>
+<Pos l='75' c='27' s='15'/>
+</Attr>
+</Id>
+</Values>
+</Assignement_Sub>
+</Then>
+<Else>
+<If_Sub elseif='yes'>
+<Condition>
+<Exp_Comparison op=':'>
+<Attr>
+<Pos l='76' c='48' s='1'/>
+</Attr>
+<Binary_Exp op='|-&gt;' typref='8'>
+<Attr>
+<Pos l='76' c='30' s='3'/>
+</Attr>
+<Id value='robotInX' typref='1'>
+<Attr>
+<Pos l='76' c='21' s='8'/>
+</Attr>
+</Id>
+<Binary_Exp op='-i' typref='1'>
+<Attr>
+<Pos l='76' c='43' s='1'/>
+</Attr>
+<Id value='robotInY' typref='1'>
+<Attr>
+<Pos l='76' c='34' s='8'/>
+</Attr>
+</Id>
+<Integer_Literal value='1' typref='1'>
+<Attr>
+<Pos l='76' c='45' s='1'/>
+</Attr>
+</Integer_Literal>
+</Binary_Exp>
+</Binary_Exp>
+<Id value='internal_walls' typref='10'>
+<Attr>
+<Pos l='76' c='50' s='14'/>
+</Attr>
+</Id>
+</Exp_Comparison>
+</Condition>
+<Then>
+<Assignement_Sub>
+<Attr>
+<Pos l='78' c='24' s='2'/>
+</Attr>
+<Variables>
+<Id value='output' typref='5'>
+<Attr>
+<Pos l='78' c='17' s='6'/>
+</Attr>
+</Id>
+</Variables>
+<Values>
+<Id value='Internal_Wall_Crash' typref='5'>
+<Attr>
+<Pos l='78' c='27' s='19'/>
+</Attr>
+</Id>
+</Values>
+</Assignement_Sub>
+</Then>
+<Else>
+<Nary_Sub op='||'>
+<Assignement_Sub>
+<Attr>
+<Pos l='80' c='25' s='2'/>
+</Attr>
+<Variables>
+<Id value='visited' typref='9'>
+<Attr>
+<Pos l='80' c='17' s='7'/>
+</Attr>
+</Id>
+</Variables>
+<Values>
+<Binary_Exp op='&lt;-' typref='9'>
+<Attr>
+<Pos l='80' c='37' s='2'/>
+</Attr>
+<Id value='visited' typref='9'>
+<Attr>
+<Pos l='80' c='29' s='7'/>
+</Attr>
+</Id>
+<Binary_Exp op='|-&gt;' typref='8'>
+<Attr>
+<Pos l='80' c='50' s='3'/>
+</Attr>
+<Id value='robotInX' typref='1'>
+<Attr>
+<Pos l='80' c='41' s='8'/>
+</Attr>
+</Id>
+<Binary_Exp op='-i' typref='1'>
+<Attr>
+<Pos l='80' c='63' s='1'/>
+</Attr>
+<Id value='robotInY' typref='1'>
+<Attr>
+<Pos l='80' c='54' s='8'/>
+</Attr>
+</Id>
+<Integer_Literal value='1' typref='1'>
+<Attr>
+<Pos l='80' c='65' s='1'/>
+</Attr>
+</Integer_Literal>
+</Binary_Exp>
+</Binary_Exp>
+</Binary_Exp>
+</Values>
+</Assignement_Sub>
+<Assignement_Sub>
+<Attr>
+<Pos l='81' c='33' s='2'/>
+</Attr>
+<Variables>
+<Id value='currentPosition' typref='8'>
+<Attr>
+<Pos l='81' c='17' s='15'/>
+</Attr>
+</Id>
+</Variables>
+<Values>
+<Binary_Exp op='|-&gt;' typref='8'>
+<Attr>
+<Pos l='81' c='46' s='3'/>
+</Attr>
+<Id value='robotInX' typref='1'>
+<Attr>
+<Pos l='81' c='37' s='8'/>
+</Attr>
+</Id>
+<Binary_Exp op='-i' typref='1'>
+<Attr>
+<Pos l='81' c='59' s='1'/>
+</Attr>
+<Id value='robotInY' typref='1'>
+<Attr>
+<Pos l='81' c='50' s='8'/>
+</Attr>
+</Id>
+<Integer_Literal value='1' typref='1'>
+<Attr>
+<Pos l='81' c='61' s='1'/>
+</Attr>
+</Integer_Literal>
+</Binary_Exp>
+</Binary_Exp>
+</Values>
+</Assignement_Sub>
+<Assignement_Sub>
+<Attr>
+<Pos l='82' c='26' s='2'/>
+</Attr>
+<Variables>
+<Id value='robotInY' typref='1'>
+<Attr>
+<Pos l='82' c='17' s='8'/>
+</Attr>
+</Id>
+</Variables>
+<Values>
+<Binary_Exp op='-i' typref='1'>
+<Attr>
+<Pos l='82' c='38' s='1'/>
+</Attr>
+<Id value='robotInY' typref='1'>
+<Attr>
+<Pos l='82' c='29' s='8'/>
+</Attr>
+</Id>
+<Integer_Literal value='1' typref='1'>
+<Attr>
+<Pos l='82' c='40' s='1'/>
+</Attr>
+</Integer_Literal>
+</Binary_Exp>
+</Values>
+</Assignement_Sub>
+<Assignement_Sub>
+<Attr>
+<Pos l='83' c='24' s='2'/>
+</Attr>
+<Variables>
+<Id value='output' typref='5'>
+<Attr>
+<Pos l='83' c='17' s='6'/>
+</Attr>
+</Id>
+</Variables>
+<Values>
+<Id value='Moved_To_South' typref='5'>
+<Attr>
+<Pos l='83' c='27' s='14'/>
+</Attr>
+</Id>
+</Values>
+</Assignement_Sub>
+</Nary_Sub>
+</Else>
+</If_Sub>
+</Else>
+</If_Sub>
+</Else>
+</If_Sub>
+</Body>
+</Operation>
+<Operation name='MoveEast'>
+<Attr>
+<Pos l='87' c='6' s='6' endLine='105'/>
+</Attr>
+<Output_Parameters>
+<Id value='output' typref='5'>
+<Attr>
+<Pos l='87' c='6' s='6'/>
+</Attr>
+</Id>
+</Output_Parameters>
+<Precondition>
+<Exp_Comparison op=':'>
+<Attr>
+<Pos l='88' c='21' s='1'/>
+</Attr>
+<Id value='output' typref='5'>
+<Attr>
+<Pos l='88' c='14' s='6'/>
+</Attr>
+</Id>
+<Id value='MOVE' typref='4'>
+<Attr>
+<Pos l='88' c='23' s='4'/>
+</Attr>
+</Id>
+</Exp_Comparison>
+</Precondition>
+<Body>
+<If_Sub elseif='no'>
+<Attr>
+<Pos l='90' c='13' s='2'/>
+</Attr>
+<Condition>
+<Exp_Comparison op=':'>
+<Attr>
+<Pos l='90' c='40' s='1'/>
+</Attr>
+<Binary_Exp op='|-&gt;' typref='8'>
+<Attr>
+<Pos l='90' c='26' s='3'/>
+</Attr>
+<Id value='robotInX' typref='1'>
+<Attr>
+<Pos l='90' c='17' s='8'/>
+</Attr>
+</Id>
+<Id value='robotInY' typref='1'>
+<Attr>
+<Pos l='90' c='30' s='8'/>
+</Attr>
+</Id>
+</Binary_Exp>
+<Id value='exit_square' typref='10'>
+<Attr>
+<Pos l='90' c='42' s='11'/>
+</Attr>
+</Id>
+</Exp_Comparison>
+</Condition>
+<Then>
+<Assignement_Sub>
+<Attr>
+<Pos l='92' c='24' s='2'/>
+</Attr>
+<Variables>
+<Id value='output' typref='5'>
+<Attr>
+<Pos l='92' c='17' s='6'/>
+</Attr>
+</Id>
+</Variables>
+<Values>
+<Id value='Already_In_Exit_Square' typref='5'>
+<Attr>
+<Pos l='92' c='27' s='22'/>
+</Attr>
+</Id>
+</Values>
+</Assignement_Sub>
+</Then>
+<Else>
+<If_Sub elseif='yes'>
+<Condition>
+<Exp_Comparison op=':'>
+<Attr>
+<Pos l='93' c='48' s='1'/>
+</Attr>
+<Binary_Exp op='|-&gt;' typref='8'>
+<Attr>
+<Pos l='93' c='34' s='3'/>
+</Attr>
+<Binary_Exp op='+i' typref='1'>
+<Attr>
+<Pos l='93' c='30' s='1'/>
+</Attr>
+<Id value='robotInX' typref='1'>
+<Attr>
+<Pos l='93' c='21' s='8'/>
+</Attr>
+</Id>
+<Integer_Literal value='1' typref='1'>
+<Attr>
+<Pos l='93' c='32' s='1'/>
+</Attr>
+</Integer_Literal>
+</Binary_Exp>
+<Id value='robotInY' typref='1'>
+<Attr>
+<Pos l='93' c='38' s='8'/>
+</Attr>
+</Id>
+</Binary_Exp>
+<Id value='internal_walls' typref='10'>
+<Attr>
+<Pos l='93' c='50' s='14'/>
+</Attr>
+</Id>
+</Exp_Comparison>
+</Condition>
+<Then>
+<Assignement_Sub>
+<Attr>
+<Pos l='95' c='24' s='2'/>
+</Attr>
+<Variables>
+<Id value='output' typref='5'>
+<Attr>
+<Pos l='95' c='17' s='6'/>
+</Attr>
+</Id>
+</Variables>
+<Values>
+<Id value='Internal_Wall_Crash' typref='5'>
+<Attr>
+<Pos l='95' c='27' s='19'/>
+</Attr>
+</Id>
+</Values>
+</Assignement_Sub>
+</Then>
+<Else>
+<If_Sub elseif='yes'>
+<Condition>
+<Exp_Comparison op='&gt;i'>
+<Attr>
+<Pos l='96' c='33' s='1'/>
+</Attr>
+<Binary_Exp op='+i' typref='1'>
+<Attr>
+<Pos l='96' c='29' s='1'/>
+</Attr>
+<Id value='robotInX' typref='1'>
+<Attr>
+<Pos l='96' c='20' s='8'/>
+</Attr>
+</Id>
+<Integer_Literal value='1' typref='1'>
+<Attr>
+<Pos l='96' c='31' s='1'/>
+</Attr>
+</Integer_Literal>
+</Binary_Exp>
+<Unary_Exp op='imax' typref='1'>
+<Attr>
+<Pos l='96' c='35' s='3'/>
+</Attr>
+<Id value='width' typref='2'>
+<Attr>
+<Pos l='96' c='39' s='5'/>
+</Attr>
+</Id>
+</Unary_Exp>
+</Exp_Comparison>
+</Condition>
+<Then>
+<Assignement_Sub>
+<Attr>
+<Pos l='98' c='24' s='2'/>
+</Attr>
+<Variables>
+<Id value='output' typref='5'>
+<Attr>
+<Pos l='98' c='17' s='6'/>
+</Attr>
+</Id>
+</Variables>
+<Values>
+<Id value='Out_Of_Boundary' typref='5'>
+<Attr>
+<Pos l='98' c='27' s='15'/>
+</Attr>
+</Id>
+</Values>
+</Assignement_Sub>
+</Then>
+<Else>
+<Nary_Sub op='||'>
+<Assignement_Sub>
+<Attr>
+<Pos l='100' c='25' s='2'/>
+</Attr>
+<Variables>
+<Id value='visited' typref='9'>
+<Attr>
+<Pos l='100' c='17' s='7'/>
+</Attr>
+</Id>
+</Variables>
+<Values>
+<Binary_Exp op='&lt;-' typref='9'>
+<Attr>
+<Pos l='100' c='37' s='2'/>
+</Attr>
+<Id value='visited' typref='9'>
+<Attr>
+<Pos l='100' c='29' s='7'/>
+</Attr>
+</Id>
+<Binary_Exp op='|-&gt;' typref='8'>
+<Attr>
+<Pos l='100' c='54' s='3'/>
+</Attr>
+<Binary_Exp op='+i' typref='1'>
+<Attr>
+<Pos l='100' c='50' s='1'/>
+</Attr>
+<Id value='robotInX' typref='1'>
+<Attr>
+<Pos l='100' c='41' s='8'/>
+</Attr>
+</Id>
+<Integer_Literal value='1' typref='1'>
+<Attr>
+<Pos l='100' c='52' s='1'/>
+</Attr>
+</Integer_Literal>
+</Binary_Exp>
+<Id value='robotInY' typref='1'>
+<Attr>
+<Pos l='100' c='58' s='8'/>
+</Attr>
+</Id>
+</Binary_Exp>
+</Binary_Exp>
+</Values>
+</Assignement_Sub>
+<Assignement_Sub>
+<Attr>
+<Pos l='101' c='33' s='2'/>
+</Attr>
+<Variables>
+<Id value='currentPosition' typref='8'>
+<Attr>
+<Pos l='101' c='17' s='15'/>
+</Attr>
+</Id>
+</Variables>
+<Values>
+<Binary_Exp op='|-&gt;' typref='8'>
+<Attr>
+<Pos l='101' c='50' s='3'/>
+</Attr>
+<Binary_Exp op='+i' typref='1'>
+<Attr>
+<Pos l='101' c='46' s='1'/>
+</Attr>
+<Id value='robotInX' typref='1'>
+<Attr>
+<Pos l='101' c='37' s='8'/>
+</Attr>
+</Id>
+<Integer_Literal value='1' typref='1'>
+<Attr>
+<Pos l='101' c='48' s='1'/>
+</Attr>
+</Integer_Literal>
+</Binary_Exp>
+<Id value='robotInY' typref='1'>
+<Attr>
+<Pos l='101' c='54' s='8'/>
+</Attr>
+</Id>
+</Binary_Exp>
+</Values>
+</Assignement_Sub>
+<Assignement_Sub>
+<Attr>
+<Pos l='102' c='26' s='2'/>
+</Attr>
+<Variables>
+<Id value='robotInX' typref='1'>
+<Attr>
+<Pos l='102' c='17' s='8'/>
+</Attr>
+</Id>
+</Variables>
+<Values>
+<Binary_Exp op='+i' typref='1'>
+<Attr>
+<Pos l='102' c='38' s='1'/>
+</Attr>
+<Id value='robotInX' typref='1'>
+<Attr>
+<Pos l='102' c='29' s='8'/>
+</Attr>
+</Id>
+<Integer_Literal value='1' typref='1'>
+<Attr>
+<Pos l='102' c='40' s='1'/>
+</Attr>
+</Integer_Literal>
+</Binary_Exp>
+</Values>
+</Assignement_Sub>
+<Assignement_Sub>
+<Attr>
+<Pos l='103' c='24' s='2'/>
+</Attr>
+<Variables>
+<Id value='output' typref='5'>
+<Attr>
+<Pos l='103' c='17' s='6'/>
+</Attr>
+</Id>
+</Variables>
+<Values>
+<Id value='Moved_To_East' typref='5'>
+<Attr>
+<Pos l='103' c='27' s='13'/>
+</Attr>
+</Id>
+</Values>
+</Assignement_Sub>
+</Nary_Sub>
+</Else>
+</If_Sub>
+</Else>
+</If_Sub>
+</Else>
+</If_Sub>
+</Body>
+</Operation>
+<Operation name='MoveWest'>
+<Attr>
+<Pos l='107' c='6' s='6' endLine='125'/>
+</Attr>
+<Output_Parameters>
+<Id value='output' typref='5'>
+<Attr>
+<Pos l='107' c='6' s='6'/>
+</Attr>
+</Id>
+</Output_Parameters>
+<Precondition>
+<Exp_Comparison op=':'>
+<Attr>
+<Pos l='108' c='21' s='1'/>
+</Attr>
+<Id value='output' typref='5'>
+<Attr>
+<Pos l='108' c='14' s='6'/>
+</Attr>
+</Id>
+<Id value='MOVE' typref='4'>
+<Attr>
+<Pos l='108' c='23' s='4'/>
+</Attr>
+</Id>
+</Exp_Comparison>
+</Precondition>
+<Body>
+<If_Sub elseif='no'>
+<Attr>
+<Pos l='110' c='13' s='2'/>
+</Attr>
+<Condition>
+<Exp_Comparison op=':'>
+<Attr>
+<Pos l='110' c='40' s='1'/>
+</Attr>
+<Binary_Exp op='|-&gt;' typref='8'>
+<Attr>
+<Pos l='110' c='26' s='3'/>
+</Attr>
+<Id value='robotInX' typref='1'>
+<Attr>
+<Pos l='110' c='17' s='8'/>
+</Attr>
+</Id>
+<Id value='robotInY' typref='1'>
+<Attr>
+<Pos l='110' c='30' s='8'/>
+</Attr>
+</Id>
+</Binary_Exp>
+<Id value='exit_square' typref='10'>
+<Attr>
+<Pos l='110' c='42' s='11'/>
+</Attr>
+</Id>
+</Exp_Comparison>
+</Condition>
+<Then>
+<Assignement_Sub>
+<Attr>
+<Pos l='112' c='24' s='2'/>
+</Attr>
+<Variables>
+<Id value='output' typref='5'>
+<Attr>
+<Pos l='112' c='17' s='6'/>
+</Attr>
+</Id>
+</Variables>
+<Values>
+<Id value='Already_In_Exit_Square' typref='5'>
+<Attr>
+<Pos l='112' c='27' s='22'/>
+</Attr>
+</Id>
+</Values>
+</Assignement_Sub>
+</Then>
+<Else>
+<If_Sub elseif='yes'>
+<Condition>
+<Exp_Comparison op='&gt;i'>
+<Attr>
+<Pos l='113' c='33' s='1'/>
+</Attr>
+<Binary_Exp op='-i' typref='1'>
+<Attr>
+<Pos l='113' c='29' s='1'/>
+</Attr>
+<Id value='robotInX' typref='1'>
+<Attr>
+<Pos l='113' c='20' s='8'/>
+</Attr>
+</Id>
+<Integer_Literal value='1' typref='1'>
+<Attr>
+<Pos l='113' c='31' s='1'/>
+</Attr>
+</Integer_Literal>
+</Binary_Exp>
+<Unary_Exp op='imax' typref='1'>
+<Attr>
+<Pos l='113' c='35' s='3'/>
+</Attr>
+<Id value='width' typref='2'>
+<Attr>
+<Pos l='113' c='39' s='5'/>
+</Attr>
+</Id>
+</Unary_Exp>
+</Exp_Comparison>
+</Condition>
+<Then>
+<Assignement_Sub>
+<Attr>
+<Pos l='115' c='24' s='2'/>
+</Attr>
+<Variables>
+<Id value='output' typref='5'>
+<Attr>
+<Pos l='115' c='17' s='6'/>
+</Attr>
+</Id>
+</Variables>
+<Values>
+<Id value='Out_Of_Boundary' typref='5'>
+<Attr>
+<Pos l='115' c='27' s='15'/>
+</Attr>
+</Id>
+</Values>
+</Assignement_Sub>
+</Then>
+<Else>
+<If_Sub elseif='yes'>
+<Condition>
+<Exp_Comparison op=':'>
+<Attr>
+<Pos l='116' c='48' s='1'/>
+</Attr>
+<Binary_Exp op='|-&gt;' typref='8'>
+<Attr>
+<Pos l='116' c='34' s='3'/>
+</Attr>
+<Binary_Exp op='-i' typref='1'>
+<Attr>
+<Pos l='116' c='30' s='1'/>
+</Attr>
+<Id value='robotInX' typref='1'>
+<Attr>
+<Pos l='116' c='21' s='8'/>
+</Attr>
+</Id>
+<Integer_Literal value='1' typref='1'>
+<Attr>
+<Pos l='116' c='32' s='1'/>
+</Attr>
+</Integer_Literal>
+</Binary_Exp>
+<Id value='robotInY' typref='1'>
+<Attr>
+<Pos l='116' c='38' s='8'/>
+</Attr>
+</Id>
+</Binary_Exp>
+<Id value='internal_walls' typref='10'>
+<Attr>
+<Pos l='116' c='50' s='14'/>
+</Attr>
+</Id>
+</Exp_Comparison>
+</Condition>
+<Then>
+<Assignement_Sub>
+<Attr>
+<Pos l='118' c='24' s='2'/>
+</Attr>
+<Variables>
+<Id value='output' typref='5'>
+<Attr>
+<Pos l='118' c='17' s='6'/>
+</Attr>
+</Id>
+</Variables>
+<Values>
+<Id value='Internal_Wall_Crash' typref='5'>
+<Attr>
+<Pos l='118' c='27' s='19'/>
+</Attr>
+</Id>
+</Values>
+</Assignement_Sub>
+</Then>
+<Else>
+<Nary_Sub op='||'>
+<Assignement_Sub>
+<Attr>
+<Pos l='120' c='25' s='2'/>
+</Attr>
+<Variables>
+<Id value='visited' typref='9'>
+<Attr>
+<Pos l='120' c='17' s='7'/>
+</Attr>
+</Id>
+</Variables>
+<Values>
+<Binary_Exp op='&lt;-' typref='9'>
+<Attr>
+<Pos l='120' c='37' s='2'/>
+</Attr>
+<Id value='visited' typref='9'>
+<Attr>
+<Pos l='120' c='29' s='7'/>
+</Attr>
+</Id>
+<Binary_Exp op='|-&gt;' typref='8'>
+<Attr>
+<Pos l='120' c='54' s='3'/>
+</Attr>
+<Binary_Exp op='-i' typref='1'>
+<Attr>
+<Pos l='120' c='50' s='1'/>
+</Attr>
+<Id value='robotInX' typref='1'>
+<Attr>
+<Pos l='120' c='41' s='8'/>
+</Attr>
+</Id>
+<Integer_Literal value='1' typref='1'>
+<Attr>
+<Pos l='120' c='52' s='1'/>
+</Attr>
+</Integer_Literal>
+</Binary_Exp>
+<Id value='robotInY' typref='1'>
+<Attr>
+<Pos l='120' c='58' s='8'/>
+</Attr>
+</Id>
+</Binary_Exp>
+</Binary_Exp>
+</Values>
+</Assignement_Sub>
+<Assignement_Sub>
+<Attr>
+<Pos l='121' c='33' s='2'/>
+</Attr>
+<Variables>
+<Id value='currentPosition' typref='8'>
+<Attr>
+<Pos l='121' c='17' s='15'/>
+</Attr>
+</Id>
+</Variables>
+<Values>
+<Binary_Exp op='|-&gt;' typref='8'>
+<Attr>
+<Pos l='121' c='50' s='3'/>
+</Attr>
+<Binary_Exp op='-i' typref='1'>
+<Attr>
+<Pos l='121' c='46' s='1'/>
+</Attr>
+<Id value='robotInX' typref='1'>
+<Attr>
+<Pos l='121' c='37' s='8'/>
+</Attr>
+</Id>
+<Integer_Literal value='1' typref='1'>
+<Attr>
+<Pos l='121' c='48' s='1'/>
+</Attr>
+</Integer_Literal>
+</Binary_Exp>
+<Id value='robotInY' typref='1'>
+<Attr>
+<Pos l='121' c='54' s='8'/>
+</Attr>
+</Id>
+</Binary_Exp>
+</Values>
+</Assignement_Sub>
+<Assignement_Sub>
+<Attr>
+<Pos l='122' c='26' s='2'/>
+</Attr>
+<Variables>
+<Id value='robotInX' typref='1'>
+<Attr>
+<Pos l='122' c='17' s='8'/>
+</Attr>
+</Id>
+</Variables>
+<Values>
+<Binary_Exp op='-i' typref='1'>
+<Attr>
+<Pos l='122' c='38' s='1'/>
+</Attr>
+<Id value='robotInX' typref='1'>
+<Attr>
+<Pos l='122' c='29' s='8'/>
+</Attr>
+</Id>
+<Integer_Literal value='1' typref='1'>
+<Attr>
+<Pos l='122' c='40' s='1'/>
+</Attr>
+</Integer_Literal>
+</Binary_Exp>
+</Values>
+</Assignement_Sub>
+<Assignement_Sub>
+<Attr>
+<Pos l='123' c='24' s='2'/>
+</Attr>
+<Variables>
+<Id value='output' typref='5'>
+<Attr>
+<Pos l='123' c='17' s='6'/>
+</Attr>
+</Id>
+</Variables>
+<Values>
+<Id value='Moved_To_West' typref='5'>
+<Attr>
+<Pos l='123' c='27' s='13'/>
+</Attr>
+</Id>
+</Values>
+</Assignement_Sub>
+</Nary_Sub>
+</Else>
+</If_Sub>
+</Else>
+</If_Sub>
+</Else>
+</If_Sub>
+</Body>
+</Operation>
+<Operation name='Teleport'>
+<Attr>
+<Pos l='128' c='6' s='6' endLine='151'/>
+</Attr>
+<Output_Parameters>
+<Id value='output' typref='7'>
+<Attr>
+<Pos l='128' c='6' s='6'/>
+</Attr>
+</Id>
+</Output_Parameters>
+<Input_Parameters>
+<Id value='teleportX' typref='1'>
+<Attr>
+<Pos l='128' c='26' s='9'/>
+</Attr>
+</Id>
+<Id value='teleportY' typref='1'>
+<Attr>
+<Pos l='128' c='37' s='9'/>
+</Attr>
+</Id>
+</Input_Parameters>
+<Precondition>
+<Nary_Pred op='&amp;'>
+<Exp_Comparison op=':'>
+<Attr>
+<Pos l='129' c='21' s='1'/>
+</Attr>
+<Id value='output' typref='7'>
+<Attr>
+<Pos l='129' c='14' s='6'/>
+</Attr>
+</Id>
+<Id value='TELEPORT' typref='6'>
+<Attr>
+<Pos l='129' c='23' s='8'/>
+</Attr>
+</Id>
+</Exp_Comparison>
+<Exp_Comparison op=':'>
+<Attr>
+<Pos l='129' c='44' s='1'/>
+</Attr>
+<Id value='teleportX' typref='1'>
+<Attr>
+<Pos l='129' c='34' s='9'/>
+</Attr>
+</Id>
+<Id value='NAT1' typref='2'>
+<Attr>
+<Pos l='129' c='46' s='4'/>
+</Attr>
+</Id>
+</Exp_Comparison>
+<Exp_Comparison op=':'>
+<Attr>
+<Pos l='129' c='63' s='1'/>
+</Attr>
+<Id value='teleportY' typref='1'>
+<Attr>
+<Pos l='129' c='53' s='9'/>
+</Attr>
+</Id>
+<Id value='NAT1' typref='2'>
+<Attr>
+<Pos l='129' c='65' s='4'/>
+</Attr>
+</Id>
+</Exp_Comparison>
+</Nary_Pred>
+</Precondition>
+<Body>
+<If_Sub elseif='no'>
+<Attr>
+<Pos l='131' c='14' s='2'/>
+</Attr>
+<Condition>
+<Exp_Comparison op=':'>
+<Attr>
+<Pos l='131' c='41' s='1'/>
+</Attr>
+<Binary_Exp op='|-&gt;' typref='8'>
+<Attr>
+<Pos l='131' c='27' s='3'/>
+</Attr>
+<Id value='robotInX' typref='1'>
+<Attr>
+<Pos l='131' c='18' s='8'/>
+</Attr>
+</Id>
+<Id value='robotInY' typref='1'>
+<Attr>
+<Pos l='131' c='31' s='8'/>
+</Attr>
+</Id>
+</Binary_Exp>
+<Id value='exit_square' typref='10'>
+<Attr>
+<Pos l='131' c='43' s='11'/>
+</Attr>
+</Id>
+</Exp_Comparison>
+</Condition>
+<Then>
+<Assignement_Sub>
+<Attr>
+<Pos l='133' c='24' s='2'/>
+</Attr>
+<Variables>
+<Id value='output' typref='7'>
+<Attr>
+<Pos l='133' c='17' s='6'/>
+</Attr>
+</Id>
+</Variables>
+<Values>
+<Id value='Already_Teleported_To_Exit_Square' typref='7'>
+<Attr>
+<Pos l='133' c='27' s='33'/>
+</Attr>
+</Id>
+</Values>
+</Assignement_Sub>
+</Then>
+<Else>
+<If_Sub elseif='yes'>
+<Condition>
+<Exp_Comparison op=':'>
+<Attr>
+<Pos l='135' c='45' s='1'/>
+</Attr>
+<Binary_Exp op='|-&gt;' typref='8'>
+<Attr>
+<Pos l='135' c='30' s='3'/>
+</Attr>
+<Id value='teleportX' typref='1'>
+<Attr>
+<Pos l='135' c='20' s='9'/>
+</Attr>
+</Id>
+<Id value='teleportY' typref='1'>
+<Attr>
+<Pos l='135' c='34' s='9'/>
+</Attr>
+</Id>
+</Binary_Exp>
+<Id value='internal_walls' typref='10'>
+<Attr>
+<Pos l='135' c='47' s='14'/>
+</Attr>
+</Id>
+</Exp_Comparison>
+</Condition>
+<Then>
+<Assignement_Sub>
+<Attr>
+<Pos l='137' c='25' s='2'/>
+</Attr>
+<Variables>
+<Id value='output' typref='7'>
+<Attr>
+<Pos l='137' c='18' s='6'/>
+</Attr>
+</Id>
+</Variables>
+<Values>
+<Id value='Cannot_Teleport_Internal_Wall_Crash' typref='7'>
+<Attr>
+<Pos l='137' c='28' s='35'/>
+</Attr>
+</Id>
+</Values>
+</Assignement_Sub>
+</Then>
+<Else>
+<If_Sub elseif='yes'>
+<Condition>
+<Nary_Pred op='&amp;'>
+<Exp_Comparison op='='>
+<Attr>
+<Pos l='138' c='30' s='1'/>
+</Attr>
+<Id value='teleportX' typref='1'>
+<Attr>
+<Pos l='138' c='20' s='9'/>
+</Attr>
+</Id>
+<Id value='robotInX' typref='1'>
+<Attr>
+<Pos l='138' c='32' s='8'/>
+</Attr>
+</Id>
+</Exp_Comparison>
+<Exp_Comparison op='='>
+<Attr>
+<Pos l='138' c='53' s='1'/>
+</Attr>
+<Id value='teleportY' typref='1'>
+<Attr>
+<Pos l='138' c='43' s='9'/>
+</Attr>
+</Id>
+<Id value='robotInY' typref='1'>
+<Attr>
+<Pos l='138' c='55' s='8'/>
+</Attr>
+</Id>
+</Exp_Comparison>
+</Nary_Pred>
+</Condition>
+<Then>
+<Assignement_Sub>
+<Attr>
+<Pos l='140' c='25' s='2'/>
+</Attr>
+<Variables>
+<Id value='output' typref='7'>
+<Attr>
+<Pos l='140' c='18' s='6'/>
+</Attr>
+</Id>
+</Variables>
+<Values>
+<Id value='Cannot_Teleport_To_Same_Square' typref='7'>
+<Attr>
+<Pos l='140' c='28' s='30'/>
+</Attr>
+</Id>
+</Values>
+</Assignement_Sub>
+</Then>
+<Else>
+<If_Sub elseif='yes'>
+<Condition>
+<Exp_Comparison op='/:'>
+<Attr>
+<Pos l='141' c='47' s='2'/>
+</Attr>
+<Binary_Exp op='|-&gt;' typref='8'>
+<Attr>
+<Pos l='141' c='32' s='3'/>
+</Attr>
+<Id value='teleportX' typref='1'>
+<Attr>
+<Pos l='141' c='22' s='9'/>
+</Attr>
+</Id>
+<Id value='teleportY' typref='1'>
+<Attr>
+<Pos l='141' c='36' s='9'/>
+</Attr>
+</Id>
+</Binary_Exp>
+<Id value='maze' typref='10'>
+<Attr>
+<Pos l='141' c='50' s='4'/>
+</Attr>
+</Id>
+</Exp_Comparison>
+</Condition>
+<Then>
+<Assignement_Sub>
+<Attr>
+<Pos l='143' c='25' s='2'/>
+</Attr>
+<Variables>
+<Id value='output' typref='7'>
+<Attr>
+<Pos l='143' c='18' s='6'/>
+</Attr>
+</Id>
+</Variables>
+<Values>
+<Id value='Cannot_Teleport_Out_Of_Boundary' typref='7'>
+<Attr>
+<Pos l='143' c='28' s='31'/>
+</Attr>
+</Id>
+</Values>
+</Assignement_Sub>
+</Then>
+<Else>
+<Nary_Sub op='||'>
+<Assignement_Sub>
+<Attr>
+<Pos l='145' c='29' s='2'/>
+</Attr>
+<Variables>
+<Id value='visited' typref='9'>
+<Attr>
+<Pos l='145' c='21' s='7'/>
+</Attr>
+</Id>
+</Variables>
+<Values>
+<Binary_Exp op='&lt;-' typref='9'>
+<Attr>
+<Pos l='145' c='41' s='2'/>
+</Attr>
+<Id value='visited' typref='9'>
+<Attr>
+<Pos l='145' c='33' s='7'/>
+</Attr>
+</Id>
+<Binary_Exp op='|-&gt;' typref='8'>
+<Attr>
+<Pos l='145' c='55' s='3'/>
+</Attr>
+<Id value='teleportX' typref='1'>
+<Attr>
+<Pos l='145' c='45' s='9'/>
+</Attr>
+</Id>
+<Id value='teleportY' typref='1'>
+<Attr>
+<Pos l='145' c='59' s='9'/>
+</Attr>
+</Id>
+</Binary_Exp>
+</Binary_Exp>
+</Values>
+</Assignement_Sub>
+<Assignement_Sub>
+<Attr>
+<Pos l='146' c='37' s='2'/>
+</Attr>
+<Variables>
+<Id value='currentPosition' typref='8'>
+<Attr>
+<Pos l='146' c='21' s='15'/>
+</Attr>
+</Id>
+</Variables>
+<Values>
+<Binary_Exp op='|-&gt;' typref='8'>
+<Attr>
+<Pos l='146' c='51' s='3'/>
+</Attr>
+<Id value='teleportX' typref='1'>
+<Attr>
+<Pos l='146' c='41' s='9'/>
+</Attr>
+</Id>
+<Id value='teleportY' typref='1'>
+<Attr>
+<Pos l='146' c='55' s='9'/>
+</Attr>
+</Id>
+</Binary_Exp>
+</Values>
+</Assignement_Sub>
+<Assignement_Sub>
+<Attr>
+<Pos l='147' c='30' s='2'/>
+</Attr>
+<Variables>
+<Id value='robotInX' typref='1'>
+<Attr>
+<Pos l='147' c='21' s='8'/>
+</Attr>
+</Id>
+</Variables>
+<Values>
+<Id value='teleportX' typref='1'>
+<Attr>
+<Pos l='147' c='33' s='9'/>
+</Attr>
+</Id>
+</Values>
+</Assignement_Sub>
+<Assignement_Sub>
+<Attr>
+<Pos l='148' c='30' s='2'/>
+</Attr>
+<Variables>
+<Id value='robotInY' typref='1'>
+<Attr>
+<Pos l='148' c='21' s='8'/>
+</Attr>
+</Id>
+</Variables>
+<Values>
+<Id value='teleportY' typref='1'>
+<Attr>
+<Pos l='148' c='33' s='9'/>
+</Attr>
+</Id>
+</Values>
+</Assignement_Sub>
+<Assignement_Sub>
+<Attr>
+<Pos l='149' c='28' s='2'/>
+</Attr>
+<Variables>
+<Id value='output' typref='7'>
+<Attr>
+<Pos l='149' c='21' s='6'/>
+</Attr>
+</Id>
+</Variables>
+<Values>
+<Id value='Successfully_Teleported' typref='7'>
+<Attr>
+<Pos l='149' c='31' s='23'/>
+</Attr>
+</Id>
+</Values>
+</Assignement_Sub>
+</Nary_Sub>
+</Else>
+</If_Sub>
+</Else>
+</If_Sub>
+</Else>
+</If_Sub>
+</Else>
+</If_Sub>
+</Body>
+</Operation>
+<Operation name='getPosition'>
+<Attr>
+<Pos l='153' c='6' s='8' endLine='156'/>
+</Attr>
+<Output_Parameters>
+<Id value='position' typref='8'>
+<Attr>
+<Pos l='153' c='6' s='8'/>
+</Attr>
+</Id>
+</Output_Parameters>
+<Body>
+<Assignement_Sub>
+<Attr>
+<Pos l='155' c='23' s='2'/>
+</Attr>
+<Variables>
+<Id value='position' typref='8'>
+<Attr>
+<Pos l='155' c='14' s='8'/>
+</Attr>
+</Id>
+</Variables>
+<Values>
+<Id value='currentPosition' typref='8'>
+<Attr>
+<Pos l='155' c='26' s='15'/>
+</Attr>
+</Id>
+</Values>
+</Assignement_Sub>
+</Body>
+</Operation>
+<Operation name='foundExit'>
+<Attr>
+<Pos l='158' c='6' s='4' endLine='167'/>
+</Attr>
+<Output_Parameters>
+<Id value='exit' typref='5'>
+<Attr>
+<Pos l='158' c='6' s='4'/>
+</Attr>
+</Id>
+</Output_Parameters>
+<Precondition>
+<Exp_Comparison op=':'>
+<Attr>
+<Pos l='159' c='19' s='1'/>
+</Attr>
+<Id value='exit' typref='5'>
+<Attr>
+<Pos l='159' c='14' s='4'/>
+</Attr>
+</Id>
+<Id value='MOVE' typref='4'>
+<Attr>
+<Pos l='159' c='21' s='4'/>
+</Attr>
+</Id>
+</Exp_Comparison>
+</Precondition>
+<Body>
+<If_Sub elseif='no'>
+<Attr>
+<Pos l='161' c='14' s='2'/>
+</Attr>
+<Condition>
+<Exp_Comparison op=':'>
+<Attr>
+<Pos l='161' c='34' s='1'/>
+</Attr>
+<Id value='currentPosition' typref='8'>
+<Attr>
+<Pos l='161' c='18' s='15'/>
+</Attr>
+</Id>
+<Id value='exit_square' typref='10'>
+<Attr>
+<Pos l='161' c='36' s='11'/>
+</Attr>
+</Id>
+</Exp_Comparison>
+</Condition>
+<Then>
+<Assignement_Sub>
+<Attr>
+<Pos l='163' c='23' s='2'/>
+</Attr>
+<Variables>
+<Id value='exit' typref='5'>
+<Attr>
+<Pos l='163' c='18' s='4'/>
+</Attr>
+</Id>
+</Variables>
+<Values>
+<Id value='yes' typref='5'>
+<Attr>
+<Pos l='163' c='26' s='3'/>
+</Attr>
+</Id>
+</Values>
+</Assignement_Sub>
+</Then>
+<Else>
+<Assignement_Sub>
+<Attr>
+<Pos l='165' c='23' s='2'/>
+</Attr>
+<Variables>
+<Id value='exit' typref='5'>
+<Attr>
+<Pos l='165' c='18' s='4'/>
+</Attr>
+</Id>
+</Variables>
+<Values>
+<Id value='no' typref='5'>
+<Attr>
+<Pos l='165' c='26' s='2'/>
+</Attr>
+</Id>
+</Values>
+</Assignement_Sub>
+</Else>
+</If_Sub>
+</Body>
+</Operation>
+<Operation name='hasVisitedSquare'>
+<Attr>
+<Pos l='169' c='6' s='13' endLine='184'/>
+</Attr>
+<Output_Parameters>
+<Id value='visitedSquare' typref='5'>
+<Attr>
+<Pos l='169' c='6' s='13'/>
+</Attr>
+</Id>
+</Output_Parameters>
+<Input_Parameters>
+<Id value='visitedXPlace' typref='1'>
+<Attr>
+<Pos l='169' c='41' s='13'/>
+</Attr>
+</Id>
+<Id value='visitedYPlace' typref='1'>
+<Attr>
+<Pos l='169' c='56' s='13'/>
+</Attr>
+</Id>
+</Input_Parameters>
+<Precondition>
+<Nary_Pred op='&amp;'>
+<Exp_Comparison op=':'>
+<Attr>
+<Pos l='170' c='28' s='1'/>
+</Attr>
+<Id value='visitedSquare' typref='5'>
+<Attr>
+<Pos l='170' c='14' s='13'/>
+</Attr>
+</Id>
+<Id value='MOVE' typref='4'>
+<Attr>
+<Pos l='170' c='30' s='4'/>
+</Attr>
+</Id>
+</Exp_Comparison>
+<Exp_Comparison op=':'>
+<Attr>
+<Pos l='170' c='51' s='1'/>
+</Attr>
+<Id value='visitedXPlace' typref='1'>
+<Attr>
+<Pos l='170' c='37' s='13'/>
+</Attr>
+</Id>
+<Id value='NAT1' typref='2'>
+<Attr>
+<Pos l='170' c='53' s='4'/>
+</Attr>
+</Id>
+</Exp_Comparison>
+<Exp_Comparison op=':'>
+<Attr>
+<Pos l='170' c='74' s='1'/>
+</Attr>
+<Id value='visitedYPlace' typref='1'>
+<Attr>
+<Pos l='170' c='60' s='13'/>
+</Attr>
+</Id>
+<Id value='NAT1' typref='2'>
+<Attr>
+<Pos l='170' c='76' s='4'/>
+</Attr>
+</Id>
+</Exp_Comparison>
+</Nary_Pred>
+</Precondition>
+<Body>
+<If_Sub elseif='no'>
+<Attr>
+<Pos l='172' c='14' s='2'/>
+</Attr>
+<Condition>
+<Exp_Comparison op=':'>
+<Attr>
+<Pos l='172' c='52' s='1'/>
+</Attr>
+<Binary_Exp op='|-&gt;' typref='8'>
+<Attr>
+<Pos l='172' c='33' s='3'/>
+</Attr>
+<Id value='visitedXPlace' typref='1'>
+<Attr>
+<Pos l='172' c='19' s='13'/>
+</Attr>
+</Id>
+<Id value='visitedYPlace' typref='1'>
+<Attr>
+<Pos l='172' c='37' s='13'/>
+</Attr>
+</Id>
+</Binary_Exp>
+<Id value='maze' typref='10'>
+<Attr>
+<Pos l='172' c='54' s='4'/>
+</Attr>
+</Id>
+</Exp_Comparison>
+</Condition>
+<Then>
+<If_Sub elseif='no'>
+<Attr>
+<Pos l='174' c='17' s='2'/>
+</Attr>
+<Condition>
+<Exp_Comparison op=':'>
+<Attr>
+<Pos l='174' c='55' s='1'/>
+</Attr>
+<Binary_Exp op='|-&gt;' typref='8'>
+<Attr>
+<Pos l='174' c='36' s='3'/>
+</Attr>
+<Id value='visitedXPlace' typref='1'>
+<Attr>
+<Pos l='174' c='22' s='13'/>
+</Attr>
+</Id>
+<Id value='visitedYPlace' typref='1'>
+<Attr>
+<Pos l='174' c='40' s='13'/>
+</Attr>
+</Id>
+</Binary_Exp>
+<Unary_Exp op='ran' typref='10'>
+<Attr>
+<Pos l='174' c='57' s='3'/>
+</Attr>
+<Unary_Exp op='front' typref='9'>
+<Attr>
+<Pos l='174' c='61' s='5'/>
+</Attr>
+<Id value='visited' typref='9'>
+<Attr>
+<Pos l='174' c='67' s='7'/>
+</Attr>
+</Id>
+</Unary_Exp>
+</Unary_Exp>
+</Exp_Comparison>
+</Condition>
+<Then>
+<Assignement_Sub>
+<Attr>
+<Pos l='176' c='37' s='2'/>
+</Attr>
+<Variables>
+<Id value='visitedSquare' typref='5'>
+<Attr>
+<Pos l='176' c='23' s='13'/>
+</Attr>
+</Id>
+</Variables>
+<Values>
+<Id value='yes' typref='5'>
+<Attr>
+<Pos l='176' c='40' s='3'/>
+</Attr>
+</Id>
+</Values>
+</Assignement_Sub>
+</Then>
+<Else>
+<Assignement_Sub>
+<Attr>
+<Pos l='178' c='37' s='2'/>
+</Attr>
+<Variables>
+<Id value='visitedSquare' typref='5'>
+<Attr>
+<Pos l='178' c='23' s='13'/>
+</Attr>
+</Id>
+</Variables>
+<Values>
+<Id value='no' typref='5'>
+<Attr>
+<Pos l='178' c='40' s='2'/>
+</Attr>
+</Id>
+</Values>
+</Assignement_Sub>
+</Else>
+</If_Sub>
+</Then>
+<Else>
+<Assignement_Sub>
+<Attr>
+<Pos l='181' c='32' s='2'/>
+</Attr>
+<Variables>
+<Id value='visitedSquare' typref='5'>
+<Attr>
+<Pos l='181' c='18' s='13'/>
+</Attr>
+</Id>
+</Variables>
+<Values>
+<Id value='Out_Of_Boundary' typref='5'>
+<Attr>
+<Pos l='181' c='35' s='15'/>
+</Attr>
+</Id>
+</Values>
+</Assignement_Sub>
+</Else>
+</If_Sub>
+</Body>
+</Operation>
+<Operation name='robotsRoute'>
+<Attr>
+<Pos l='186' c='6' s='5' endLine='189'/>
+</Attr>
+<Output_Parameters>
+<Id value='route' typref='9'>
+<Attr>
+<Pos l='186' c='6' s='5'/>
+</Attr>
+</Id>
+</Output_Parameters>
+<Body>
+<Assignement_Sub>
+<Attr>
+<Pos l='188' c='20' s='2'/>
+</Attr>
+<Variables>
+<Id value='route' typref='9'>
+<Attr>
+<Pos l='188' c='14' s='5'/>
+</Attr>
+</Id>
+</Variables>
+<Values>
+<Id value='visited' typref='9'>
+<Attr>
+<Pos l='188' c='23' s='7'/>
+</Attr>
+</Id>
+</Values>
+</Assignement_Sub>
+</Body>
+</Operation>
+<Operation name='Reset'>
+<Attr>
+<Pos l='191' c='6' s='5' endLine='194'/>
+</Attr>
+<Body>
+<Assignement_Sub>
+<Attr>
+<Pos l='193' c='59' s='2'/>
+</Attr>
+<Variables>
+<Id value='robotInX' typref='1'>
+<Attr>
+<Pos l='193' c='14' s='8'/>
+</Attr>
+</Id>
+<Id value='robotInY' typref='1'>
+<Attr>
+<Pos l='193' c='24' s='8'/>
+</Attr>
+</Id>
+<Id value='visited' typref='9'>
+<Attr>
+<Pos l='193' c='34' s='7'/>
+</Attr>
+</Id>
+<Id value='currentPosition' typref='8'>
+<Attr>
+<Pos l='193' c='43' s='15'/>
+</Attr>
+</Id>
+</Variables>
+<Values>
+<Integer_Literal value='1' typref='1'>
+<Attr>
+<Pos l='193' c='62' s='1'/>
+</Attr>
+</Integer_Literal>
+<Integer_Literal value='1' typref='1'>
+<Attr>
+<Pos l='193' c='64' s='1'/>
+</Attr>
+</Integer_Literal>
+<Nary_Exp op='[' typref='9'>
+<Attr>
+<Pos l='193' c='66' s='1'/>
+</Attr>
+<Binary_Exp op='|-&gt;' typref='8'>
+<Attr>
+<Pos l='193' c='71' s='3'/>
+</Attr>
+<Integer_Literal value='1' typref='1'>
+<Attr>
+<Pos l='193' c='69' s='1'/>
+</Attr>
+</Integer_Literal>
+<Integer_Literal value='1' typref='1'>
+<Attr>
+<Pos l='193' c='75' s='1'/>
+</Attr>
+</Integer_Literal>
+</Binary_Exp>
+</Nary_Exp>
+<Binary_Exp op='|-&gt;' typref='8'>
+<Attr>
+<Pos l='193' c='84' s='3'/>
+</Attr>
+<Integer_Literal value='1' typref='1'>
+<Attr>
+<Pos l='193' c='82' s='1'/>
+</Attr>
+</Integer_Literal>
+<Integer_Literal value='1' typref='1'>
+<Attr>
+<Pos l='193' c='88' s='1'/>
+</Attr>
+</Integer_Literal>
+</Binary_Exp>
+</Values>
+</Assignement_Sub>
+</Body>
+</Operation>
+</Operations>
+<TypeInfos>
+<Type id='0'>
+<Id value='BOOL'/>
+</Type>
+<Type id='1'>
+<Id value='INTEGER'/>
+</Type>
+<Type id='2'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Type>
+<Type id='3'>
+<Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+<Type id='4'>
+<Unary_Exp op='POW'>
+<Id value='MOVE'/>
+</Unary_Exp>
+</Type>
+<Type id='5'>
+<Id value='MOVE'/>
+</Type>
+<Type id='6'>
+<Unary_Exp op='POW'>
+<Id value='TELEPORT'/>
+</Unary_Exp>
+</Type>
+<Type id='7'>
+<Id value='TELEPORT'/>
+</Type>
+<Type id='8'>
+<Binary_Exp op='*'>
+<Id value='INTEGER'/>
+<Id value='INTEGER'/>
+</Binary_Exp>
+</Type>
+<Type id='9'>
+<Unary_Exp op='POW'>
+<Binary_Exp op='*'>
+<Id value='INTEGER'/>
+<Binary_Exp op='*'>
+<Id value='INTEGER'/>
+<Id value='INTEGER'/>
+</Binary_Exp>
+</Binary_Exp>
+</Unary_Exp>
+</Type>
+<Type id='10'>
+<Unary_Exp op='POW'>
+<Binary_Exp op='*'>
+<Id value='INTEGER'/>
+<Id value='INTEGER'/>
+</Binary_Exp>
+</Unary_Exp>
+</Type>
+<Type id='11'>
+<Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Binary_Exp op='*'>
+<Id value='INTEGER'/>
+<Binary_Exp op='*'>
+<Id value='INTEGER'/>
+<Id value='INTEGER'/>
+</Binary_Exp>
+</Binary_Exp>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+</TypeInfos>
+
+</Machine>
